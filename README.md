@@ -1,4 +1,4 @@
-# st-custom-ubuntu
+# auto-provision-linux
 
 This project creates a custom Ubuntu ISO that can be used to quickly install Ubuntu Server 22.04.3. The custom ISO automatically selects all installation options based on pre-determined values, installs proprietary services from a private APT repository, and installs a temporary private key for the initial reverse ssh tunnel creation.
 

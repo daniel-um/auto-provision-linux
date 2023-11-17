@@ -21,6 +21,15 @@ autoinstall:
     install-server: true
   timezone: US/Eastern
   late-commands:
-    - mkdir -p /etc/custom-service-one
-    - cp /cdrom/temporary-private-key /etc/custom-service-one/
+    - mkdir -p /target/etc/custom-service-1
+    - cp /cdrom/temporary-private-key /target/etc/custom-service-1/
+    - chroot /target chown agent:agent /etc/custom-service-1/temporary-private-key
+    - chroot /target chmod 600 /etc/custom-service-1/temporary-private-key
+    - echo "deb http://myrepo.example.com jammy main" | sudo tee -a /target/etc/apt/sources.list
+    - mkdir -p /target/etc/apt/preferences.d/
+    - echo -e "Package: *\nPin: origin myrepo.example.com\nPin-Priority: 1001" | sudo tee /target/etc/apt/preferences.d/myrepo-pin
+    - chroot /target apt-get update
+    - chroot /target apt-get install -y custom-service-1 custom-service-2
+
+
 
