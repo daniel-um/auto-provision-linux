@@ -1,0 +1,26 @@
+autoinstall:
+  version: 1
+  locale: en_US.UTF-8
+  keyboard:
+    layout: us
+    variant: ''
+  network:
+    network:
+      version: 2
+      ethernets:
+        enp0s25:
+          dhcp4: true
+  storage:
+    layout:
+      name: lvm
+  identity:
+    hostname: temporary-hostname
+    username: agent
+    password: temporary-password
+  ssh:
+    install-server: true
+  timezone: US/Eastern
+  late-commands:
+    - mkdir -p /etc/custom-service-one
+    - cp /cdrom/temporary-private-key /etc/custom-service-one/
+
